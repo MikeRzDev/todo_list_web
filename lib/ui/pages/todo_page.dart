@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_web/storage/storage.dart';
+import 'package:todo_list_web/ui/dialogs/dialog_widget.dart';
+import 'package:todo_list_web/ui/pages/login_page.dart';
 import 'package:todo_list_web/ui/widgets/search_widget.dart';
 
 class TodoPage extends StatefulWidget {
@@ -11,6 +14,7 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends State<TodoPage> {
   List<String> _todoList = [];
   final _textController = TextEditingController();
+  final _storage = Storage();
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class _TodoPageState extends State<TodoPage> {
               Icons.logout,
               color: Colors.white,
             ),
-            onPressed: () {},
+            onPressed: () => _showLogoutDialog(),
           )
         ],
       ),
@@ -43,6 +47,26 @@ class _TodoPageState extends State<TodoPage> {
         ),
       ),
     );
+  }
+
+  void _showLogoutDialog() => showInformationDialog(
+        context,
+        title: 'Information',
+        message: 'Do you want to logout?',
+        isTwoButton: true,
+        okButtonText: 'Yes',
+        cancelButtonText: 'No',
+        onOkPressed: () => _logout(),
+      );
+
+  void _logout() {
+    _storage.clearToken();
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (_) => LoginPage(),
+        ),
+        (_) => false);
   }
 
   Widget _buildTodoItem(String todoText) => Container(

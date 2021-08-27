@@ -17,4 +17,6 @@ class Storage {
   }
 
   Future<void> saveToken(AuthToken token) => _storage.write(key: _AUTH_TOKEN, value: token.toString());
+
+  Future<void> clearToken() => _storage.delete(key: _AUTH_TOKEN);
 }

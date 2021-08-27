@@ -6,6 +6,7 @@ Future<T?> showInformationDialog<T>(
   required String message,
   bool isTwoButton = false,
   String okButtonText = 'Ok',
+  String cancelButtonText = 'Cancel',
   VoidCallback? onOkPressed,
 }) =>
     showDialog<T>(
@@ -24,7 +25,7 @@ Future<T?> showInformationDialog<T>(
         actions: [
           if (isTwoButton)
             TextButton(
-              child: Text('No'),
+              child: Text(cancelButtonText),
               onPressed: () => Navigator.pop(context),
             ),
           TextButton(
