@@ -47,7 +47,7 @@ class _TodoPageState extends State<TodoPage> {
         child: Column(
           children: [
             SizedBox(height: 20),
-            SearchWidget(controller: _textController, onPressed: _postAndLoadTodos),
+            SearchWidget(controller: _textController, onPressed: _postAndLoadTodos2),
             SizedBox(height: 30),
             Expanded(
               child: FutureWidget<DocumentList>(
@@ -122,5 +122,14 @@ class _TodoPageState extends State<TodoPage> {
           isTwoButton: false,
           okButtonText: 'Continue',
         ));
+  }
+
+  Future<void> _postAndLoadTodos2() async {
+    final todoText = _textController.text;
+    await _firebaseApi.postTodos(TodoRequest.fromValue(todoText));
+    setState(() {
+      _documentList = _firebaseApi.getTodos();
+    });
+    _textController.text = '';
   }
 }
