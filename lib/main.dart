@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_web/storage/storage.dart';
 import 'package:todo_list_web/ui/pages/login_page.dart';
+import 'package:todo_list_web/ui/pages/todo_page.dart';
 
-void main() {
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(MyApp());
+  final sessionExists = await _sessionExists();
+  runApp(MyApp(sessionExists: sessionExists));
+}
+
+Future<bool> _sessionExists() async {
+    final storage = Storage();
+    final session = await storage.getToken();
+    return session != null;
 }
 
 class MyApp extends StatelessWidget {
+  final bool sessionExists;
+
+  const MyApp({Key? key, required this.sessionExists}) : super(key: key);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -15,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: sessionExists ? TodoPage() : LoginPage(),
     );
   }
 }
