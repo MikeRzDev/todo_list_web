@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_web/api/firebase_api.dart';
 import 'package:todo_list_web/api/model/document_list.dart';
-import 'package:todo_list_web/api/model/error_response.dart';
+import 'package:todo_list_web/api/model/todo.dart';
+import 'package:todo_list_web/api/model/todo_request.dart';
 import 'package:todo_list_web/storage/storage.dart';
 import 'package:todo_list_web/ui/dialogs/dialog_widget.dart';
 import 'package:todo_list_web/ui/pages/login_page.dart';
@@ -16,10 +17,16 @@ class TodoPage extends StatefulWidget {
 }
 
 class _TodoPageState extends State<TodoPage> {
-  List<String> _todoList = [];
   final _textController = TextEditingController();
   final _storage = Storage();
   final _firebaseApi = FirebaseApi();
+  late Future<DocumentList> _documentList;
+
+  @override
+  void initState() {
+    super.initState();
+    _documentList = _firebaseApi.getTodos();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +47,11 @@ class _TodoPageState extends State<TodoPage> {
         child: Column(
           children: [
             SizedBox(height: 20),
-            SearchWidget(controller: _textController, onPressed: _loadTodo),
+            SearchWidget(controller: _textController, onPressed: _postAndLoadTodos),
             SizedBox(height: 30),
             Expanded(
               child: FutureWidget<DocumentList>(
-                future: _firebaseApi.getTodos(),
+                future: _documentList,
                 onSuccess: (documentList) => _buildTodoList(documentList.todoList),
                 onError: (error) => _showErrorWidget(error),
                 onWait: () => Center(child: CircularProgressIndicator()),
@@ -66,6 +73,14 @@ class _TodoPageState extends State<TodoPage> {
         onOkPressed: () => _logout(),
       );
 
+  Future<void> _showErrorDialog(String errorText) => showInformationDialog(
+        context,
+        title: 'Error',
+        message: errorText,
+        isTwoButton: false,
+        okButtonText: 'Continue',
+      );
+
   Widget _showErrorWidget(String error) => Text(error);
 
   void _logout() {
@@ -85,9 +100,27 @@ class _TodoPageState extends State<TodoPage> {
       );
 
   Widget _buildTodoItem(Todo? todo) => Container(
-        color: Colors.cyan,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 1),
+          color: Colors.cyan,
+        ),
+        padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
         child: Text(todo?.value ?? ''),
       );
 
-  void _loadTodo() => setState(() => _todoList.add(_textController.text));
+  void _postAndLoadTodos() {
+    final todoText = _textController.text;
+    _firebaseApi.postTodos(TodoRequest.fromValue(todoText)).then((_) {
+      _textController.text = '';
+      setState(() {
+        _documentList = _firebaseApi.getTodos();
+      });
+    }).onError<String>((error, _) => showInformationDialog(
+          context,
+          title: 'Error',
+          message: error,
+          isTwoButton: false,
+          okButtonText: 'Continue',
+        ));
+  }
 }

@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:todo_list_web/api/model/fields.dart';
+import 'package:todo_list_web/api/model/todo.dart';
 
 part 'document_list.g.dart';
 
@@ -34,28 +36,4 @@ class Document {
   Map<String, dynamic> toJson() => _$DocumentToJson(this);
 
 
-}
-
-@JsonSerializable(ignoreUnannotated: false)
-class Fields {
-  @JsonKey(name: 'todo')
-  Todo? todo;
-
-  Fields({required this.todo});
-
-  factory Fields.fromJson(Map<String, dynamic> json) => _$FieldsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$FieldsToJson(this);
-}
-
-@JsonSerializable(ignoreUnannotated: false)
-class Todo {
-  @JsonKey(name: 'stringValue')
-  String? value;
-
-  Todo({required this.value});
-
-  factory Todo.fromJson(Map<String, dynamic> json) => _$TodoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$TodoToJson(this);
 }

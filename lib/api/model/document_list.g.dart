@@ -36,25 +36,3 @@ Map<String, dynamic> _$DocumentToJson(Document instance) => <String, dynamic>{
       'createTime': instance.createTime,
       'updateTime': instance.updateTime,
     };
-
-Fields _$FieldsFromJson(Map<String, dynamic> json) {
-  return Fields(
-    todo: json['todo'] == null
-        ? null
-        : Todo.fromJson(json['todo'] as Map<String, dynamic>),
-  );
-}
-
-Map<String, dynamic> _$FieldsToJson(Fields instance) => <String, dynamic>{
-      'todo': instance.todo,
-    };
-
-Todo _$TodoFromJson(Map<String, dynamic> json) {
-  return Todo(
-    value: json['stringValue'] as String?,
-  );
-}
-
-Map<String, dynamic> _$TodoToJson(Todo instance) => <String, dynamic>{
-      'stringValue': instance.value,
-    };

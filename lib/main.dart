@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   final bool sessionExists;
 
   const MyApp({Key? key, required this.sessionExists}) : super(key: key);
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
