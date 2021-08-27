@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list_web/api/firebase_api.dart';
+import 'package:todo_list_web/api/model/document_list.dart';
+import 'package:todo_list_web/api/model/error_response.dart';
 import 'package:todo_list_web/storage/storage.dart';
 import 'package:todo_list_web/ui/dialogs/dialog_widget.dart';
 import 'package:todo_list_web/ui/pages/login_page.dart';
+import 'package:todo_list_web/ui/widgets/future_widget.dart';
 import 'package:todo_list_web/ui/widgets/search_widget.dart';
 
 class TodoPage extends StatefulWidget {
@@ -15,6 +19,7 @@ class _TodoPageState extends State<TodoPage> {
   List<String> _todoList = [];
   final _textController = TextEditingController();
   final _storage = Storage();
+  final _firebaseApi = FirebaseApi();
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +39,15 @@ class _TodoPageState extends State<TodoPage> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             SearchWidget(controller: _textController, onPressed: _loadTodo),
+            SizedBox(height: 30),
             Expanded(
-              child: ListView.builder(
-                padding: const EdgeInsets.all(8),
-                itemCount: _todoList.length,
-                itemBuilder: (_, index) => _buildTodoItem(_todoList[index]),
+              child: FutureWidget<DocumentList>(
+                future: _firebaseApi.getTodos(),
+                onSuccess: (documentList) => _buildTodoList(documentList.todoList),
+                onError: (error) => _showErrorWidget(error),
+                onWait: () => Center(child: CircularProgressIndicator()),
               ),
             )
           ],
@@ -59,6 +66,8 @@ class _TodoPageState extends State<TodoPage> {
         onOkPressed: () => _logout(),
       );
 
+  Widget _showErrorWidget(String error) => Text(error);
+
   void _logout() {
     _storage.clearToken();
     Navigator.pushAndRemoveUntil(
@@ -69,9 +78,15 @@ class _TodoPageState extends State<TodoPage> {
         (_) => false);
   }
 
-  Widget _buildTodoItem(String todoText) => Container(
+  Widget _buildTodoList(List<Todo?>? todoList) => ListView.builder(
+        padding: const EdgeInsets.all(8),
+        itemCount: todoList?.length ?? 0,
+        itemBuilder: (_, index) => _buildTodoItem(todoList?[index]),
+      );
+
+  Widget _buildTodoItem(Todo? todo) => Container(
         color: Colors.cyan,
-        child: Text(todoText),
+        child: Text(todo?.value ?? ''),
       );
 
   void _loadTodo() => setState(() => _todoList.add(_textController.text));
