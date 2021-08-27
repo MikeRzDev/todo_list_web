@@ -15,17 +15,21 @@ class _TodoPageState extends State<TodoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('TodoList'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+            onPressed: () {},
+          )
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Text(
-                'Todo List',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-              ),
-            ),
-            SizedBox(height: 50),
             SizedBox(height: 10),
             SearchWidget(controller: _textController, onPressed: _loadTodo),
             Expanded(
@@ -42,9 +46,9 @@ class _TodoPageState extends State<TodoPage> {
   }
 
   Widget _buildTodoItem(String todoText) => Container(
-    color: Colors.cyan,
-    child: Text(todoText),
-  );
+        color: Colors.cyan,
+        child: Text(todoText),
+      );
 
   void _loadTodo() => setState(() => _todoList.add(_textController.text));
 }
