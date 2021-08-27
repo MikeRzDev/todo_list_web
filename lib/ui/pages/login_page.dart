@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list_web/api/firebase_api.dart';
+import 'package:todo_list_web/api/model/error_response.dart';
 import 'package:todo_list_web/storage/storage.dart';
+import 'package:todo_list_web/ui/dialogs/dialog_widget.dart';
+import 'package:todo_list_web/ui/pages/todo_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -55,10 +58,18 @@ class _LoginPageState extends State<LoginPage> {
                       return null;
                     }),
                 ElevatedButton(
-                    onPressed: () async {
-                      _formKey.currentState?.save();
+                    onPressed: () {
                       if (_formKey.currentState?.validate() == true) {
-                        await login();
+                        _formKey.currentState?.save();
+                        login()
+                            .then((_) => Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => TodoPage(),
+                                ),
+                                (_) => false))
+                            .onError<ErrorResponse>((error, _) => showInformationDialog(context,
+                                title: 'Error', message: error.errorList?.message ?? 'unknown error'));
                       }
                     },
                     child: Text('Login'))

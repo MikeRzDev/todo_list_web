@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_web/ui/login_page.dart';
+import 'package:todo_list_web/ui/pages/login_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -12,12 +13,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: LoginPage(),
     );
   }
 }
-
-
