@@ -195,6 +195,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_mobx:
+    dependency: "direct main"
+    description:
+      name: flutter_mobx
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -214,6 +221,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.2.0"
   glob:
     dependency: transitive
     description:
@@ -305,6 +319,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  mobx:
+    dependency: transitive
+    description:
+      name: mobx
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.4"
+  mobx_codegen:
+    dependency: "direct dev"
+    description:
+      name: mobx_codegen
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   package_config:
     dependency: transitive
     description:

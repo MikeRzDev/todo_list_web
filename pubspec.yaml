@@ -19,10 +19,13 @@ dependencies:
   http: ^0.13.3
   flutter_secure_storage: ^4.2.1
   json_annotation: ^4.0.1
+  flutter_mobx: ^2.0.2
+  get_it: ^7.2.0
 
 
 dev_dependencies:
   json_serializable: ^4.1.4
+  mobx_codegen: ^2.0.2
   build_runner: ^2.1.1
   flutter_test:
     sdk: flutter
