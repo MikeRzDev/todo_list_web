@@ -11,7 +11,10 @@ ErrorResponse _$ErrorResponseFromJson(Map<String, dynamic> json) {
     errorList: json['error'] == null
         ? null
         : ErrorList.fromJson(json['error'] as Map<String, dynamic>),
-  );
+  )
+    ..code = json['code'] as int?
+    ..message = json['message'] as String?
+    ..status = json['status'] as String?;
 }
 
 Map<String, dynamic> _$ErrorResponseToJson(ErrorResponse instance) {
@@ -24,6 +27,9 @@ Map<String, dynamic> _$ErrorResponseToJson(ErrorResponse instance) {
   }
 
   writeNotNull('error', instance.errorList);
+  writeNotNull('code', instance.code);
+  writeNotNull('message', instance.message);
+  writeNotNull('status', instance.status);
   return val;
 }
 

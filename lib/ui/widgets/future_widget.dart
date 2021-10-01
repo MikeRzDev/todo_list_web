@@ -19,7 +19,7 @@ class FutureWidget<T> extends StatelessWidget {
         future: future,
         builder: (_, snapshot) {
           try {
-            if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.connectionState == ConnectionState.done && snapshot.data != null) {
               return onSuccess(snapshot.data as T);
             } else if (snapshot.hasError) {
               return onError(snapshot.error.toString());

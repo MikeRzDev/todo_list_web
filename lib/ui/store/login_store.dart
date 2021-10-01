@@ -1,5 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:mobx/mobx.dart';
-import 'package:todo_list_web/api/firebase_api.dart';
+import 'package:todo_list_web/api/contract/login_api.dart';
+import 'package:todo_list_web/api/model/auth_request.dart';
+import 'package:todo_list_web/main.dart';
+import 'package:todo_list_web/sl/service_locator.dart';
 import 'package:todo_list_web/storage/storage.dart';
 
 part 'login_store.g.dart';
@@ -7,10 +11,12 @@ part 'login_store.g.dart';
 class LoginStore = _LoginStore with _$LoginStore;
 
 abstract class _LoginStore with Store {
-  final FirebaseApi _firebaseApi = FirebaseApi();
-  final Storage _storage = Storage();
+  final _firebaseRetrofit =
+      LoginApi(locator<Dio>());
+  final _storage = Storage();
 
-  final RegExp _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+  final key = appConfig.firebaseApiKey!;
+  final _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   @observable
   String? email;
@@ -37,12 +43,24 @@ abstract class _LoginStore with Store {
   }
 
   @computed
-  bool get isFormValid => isFieldValid(email, emailError) && isFieldValid(password, passwordError);
+  bool get isFormValid =>
+      isFieldValid(email, emailError) && isFieldValid(password, passwordError);
 
-  bool isFieldValid(String? field, String? errorField) => field != null && field.isNotEmpty && errorField == null;
+  bool isFieldValid(String? field, String? errorField) =>
+      field != null && field.isNotEmpty && errorField == null;
 
   Future<void> login() async {
-    final token = await _firebaseApi.login(email!, password!);
-    await _storage.saveToken(token);
+    try {
+      final authRequest = AuthRequest(email: email, password: password);
+
+      // MOST SECURE APPROACH - DO POC
+      // final key = await AppConfig.load().then((appConfig) => appConfig.firebaseApiKey);
+
+      final token = await _firebaseRetrofit.loginUser(
+          authRequest: authRequest, firebaseApiKey: key);
+      await _storage.saveToken(token);
+    } catch (ex) {
+      print(ex);
+    }
   }
 }
