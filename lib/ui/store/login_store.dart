@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:mobx/mobx.dart';
 import 'package:todo_list_web/api/contract/login_api.dart';
 import 'package:todo_list_web/api/model/auth_request.dart';
-import 'package:todo_list_web/main.dart';
+import 'package:todo_list_web/config/app_config.dart';
 import 'package:todo_list_web/sl/service_locator.dart';
 import 'package:todo_list_web/storage/storage.dart';
 
@@ -15,7 +15,7 @@ abstract class _LoginStore with Store {
       LoginApi(locator<Dio>());
   final _storage = Storage();
 
-  final key = appConfig.firebaseApiKey!;
+  final key = FIREBASE_API_KEY;
   final _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   @observable
@@ -52,9 +52,6 @@ abstract class _LoginStore with Store {
   Future<void> login() async {
     try {
       final authRequest = AuthRequest(email: email, password: password);
-
-      // MOST SECURE APPROACH - DO POC
-      // final key = await AppConfig.load().then((appConfig) => appConfig.firebaseApiKey);
 
       final token = await _firebaseRetrofit.loginUser(
           authRequest: authRequest, firebaseApiKey: key);

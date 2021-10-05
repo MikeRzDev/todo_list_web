@@ -6,6 +6,11 @@ import 'package:todo_list_web/ui/dialogs/dialog_widget.dart';
 import 'package:todo_list_web/ui/pages/camera_page.dart';
 import 'package:todo_list_web/ui/pages/todo_page.dart';
 import 'package:todo_list_web/ui/store/login_store.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:todo_list_web/generated/l10n.dart';
+import 'package:todo_list_web/utils/extensions.dart';
+
+import 'gps_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -27,19 +32,25 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SvgPicture.asset(
+                'assets/image/intro_icon.svg',
+                width: 150,
+              ),
               Observer(
                   builder: (_) => TextField(
                         decoration: InputDecoration(
+                          labelStyle: context.textTheme.bodyText1,
                           errorText: _store.emailError,
-                          labelText: 'E-Mail',
+                          labelText: context.string.emailLabel,
                         ),
                         onChanged: (text) => _store.email = text,
                       )),
               Observer(
                   builder: (_) => TextField(
                         decoration: InputDecoration(
+                          labelStyle: context.theme.textTheme.bodyText1,
                           errorText: _store.passwordError,
-                          labelText: 'Password',
+                          labelText: context.string.passwordLabel,
                         ),
                         onChanged: (text) => _store.password = text,
                       )),
@@ -54,15 +65,28 @@ class _LoginPageState extends State<LoginPage> {
                                     builder: (_) => TodoPage(),
                                   ),
                                   (_) => false))
-                              .onError<ErrorResponse>((error, _) =>
-                                  showInformationDialog(context,
-                                      title: 'Error',
-                                      message: error.errorList?.message ??
-                                          'unknown error'))
+                              .onError<ErrorResponse>((error, _) => showInformationDialog(
+                                    context,
+                                    title: 'Error',
+                                    message: error.errorList?.message ?? 'unknown error',
+                                  ))
                           : null,
-                      child: Text('Login'))),
+                      child: Text(
+                        context.string.loginButtonLabel,
+                        style: context.textTheme.headline2,
+                      ))),
               ElevatedButton(
-                  onPressed: () => _openCamera(), child: Text('Take Picture'))
+                  onPressed: () => _openCamera(),
+                  child: Text(
+                    context.string.takePictureButtonLabel,
+                    style: context.textTheme.headline1,
+                  )),
+              ElevatedButton(
+                  onPressed: () => _openCaptureLocation(),
+                  child: Text(
+                    context.string.captureLocationButtonLabel,
+                    style: context.theme.textTheme.headline1,
+                  ))
             ],
           ),
         ),
@@ -70,12 +94,32 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Future<void> _openCaptureLocation() async {
+    final haveLocationPermission = await Permission.location.isGranted;
+    if (!haveLocationPermission) {
+      await showInformationDialog(context, title: 'Information', message: 'Please grant gps permissions for capture location');
+    }
+
+    var status = await Permission.location.request();
+    if (status.isGranted) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => GPSPage(),
+          ));
+    } else if (status.isPermanentlyDenied) {
+      showInformationDialog(context, title: 'Error', message: 'gps permission was permanently denied');
+    } else if (status.isDenied) {
+      showInformationDialog(context, title: 'Error', message: 'gps permission was denied');
+    } else if (status.isLimited) {
+      showInformationDialog(context, title: 'Error', message: 'gps permissions are limited');
+    }
+  }
+
   Future<void> _openCamera() async {
     final haveCameraPermission = await Permission.camera.isGranted;
     if (!haveCameraPermission) {
-      await showInformationDialog(context,
-          title: 'Information',
-          message: 'Please grant camera permissions for taking pictures');
+      await showInformationDialog(context, title: 'Information', message: 'Please grant camera permissions for taking pictures');
     }
 
     var status = await Permission.camera.request();
@@ -86,14 +130,11 @@ class _LoginPageState extends State<LoginPage> {
             builder: (_) => CameraPage(),
           ));
     } else if (status.isPermanentlyDenied) {
-      showInformationDialog(context,
-          title: 'Error', message: 'camera permission was permanently denied');
+      showInformationDialog(context, title: 'Error', message: 'camera permission was permanently denied');
     } else if (status.isDenied) {
-      showInformationDialog(context,
-          title: 'Error', message: 'camera permission was denied');
+      showInformationDialog(context, title: 'Error', message: 'camera permission was denied');
     } else if (status.isLimited) {
-      showInformationDialog(context,
-          title: 'Error', message: 'camera permissions are limited');
+      showInformationDialog(context, title: 'Error', message: 'camera permissions are limited');
     }
   }
 }

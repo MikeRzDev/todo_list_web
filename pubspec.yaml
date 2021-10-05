@@ -27,6 +27,9 @@ dependencies:
   dio: ^4.0.0
   retrofit: ^2.0.1
   flutter_flipperkit: ^0.0.27
+  flutter_svg: ^0.22.0
+  geolocator: ^7.6.2
+  intl: ^0.17.0
 
 dev_dependencies:
   json_serializable: ^4.1.4
@@ -36,11 +39,27 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+
+flutter_intl:
+  enabled: true
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/config/
-    - assets/font/
+    - assets/fonts/
     - assets/image/
+
+  fonts:
+    - family: Mulish
+      fonts:
+        - asset: assets/fonts/Mulish-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Mulish-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Mulish-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Mulish-Black.ttf
+          weight: 900

@@ -1,0 +1,7 @@
+{
+  "emailLabel": "Correo Electronico",
+  "passwordLabel": "Contraseña",
+  "loginButtonLabel": "Iniciar Sesion",
+  "takePictureButtonLabel": "Tomar Foto",
+  "captureLocationButtonLabel": "Obtener Ubicacion"
+}
