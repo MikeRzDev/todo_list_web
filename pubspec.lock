@@ -21,7 +21,7 @@ packages:
       name: args
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   async:
     dependency: transitive
     description:
@@ -70,7 +70,7 @@ packages:
       name: build_runner
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.1"
+    version: "2.1.2"
   build_runner_core:
     dependency: transitive
     description:
@@ -84,7 +84,7 @@ packages:
       name: built_collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.0"
+    version: "5.1.1"
   built_value:
     dependency: transitive
     description:
@@ -92,6 +92,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.1.2"
+  camera:
+    dependency: "direct main"
+    description:
+      name: camera
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.2+2"
+  camera_platform_interface:
+    dependency: transitive
+    description:
+      name: camera_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.1"
   characters:
     dependency: transitive
     description:
@@ -119,7 +133,7 @@ packages:
       name: cli_util
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.3"
+    version: "0.3.4"
   clock:
     dependency: transitive
     description:
@@ -148,6 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  cross_file:
+    dependency: transitive
+    description:
+      name: cross_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.1+5"
   crypto:
     dependency: transitive
     description:
@@ -168,7 +189,14 @@ packages:
       name: dart_style
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.3"
+    version: "2.1.1"
+  dio:
+    dependency: "direct main"
+    description:
+      name: dio
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -195,6 +223,32 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_flipperkit:
+    dependency: "direct main"
+    description:
+      name: flutter_flipperkit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.27"
+  flutter_localizations:
+    dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_mobx:
+    dependency: "direct main"
+    description:
+      name: flutter_mobx
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -202,8 +256,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.1"
+  flutter_svg:
+    dependency: "direct main"
+    description:
+      name: flutter_svg
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.22.0"
   flutter_test:
     dependency: "direct dev"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
+  flutter_web_plugins:
+    dependency: transitive
     description: flutter
     source: sdk
     version: "0.0.0"
@@ -214,6 +280,48 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  geolocator:
+    dependency: "direct main"
+    description:
+      name: geolocator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.6.2"
+  geolocator_android:
+    dependency: transitive
+    description:
+      name: geolocator_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
+  geolocator_apple:
+    dependency: transitive
+    description:
+      name: geolocator_apple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.1"
+  geolocator_platform_interface:
+    dependency: transitive
+    description:
+      name: geolocator_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.6"
+  geolocator_web:
+    dependency: transitive
+    description:
+      name: geolocator_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.6"
+  get_it:
+    dependency: "direct main"
+    description:
+      name: get_it
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "7.2.0"
   glob:
     dependency: transitive
     description:
@@ -221,13 +329,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  google_maps_flutter:
+    dependency: "direct main"
+    description:
+      name: google_maps_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.9"
+  google_maps_flutter_platform_interface:
+    dependency: transitive
+    description:
+      name: google_maps_flutter_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.3"
   graphs:
     dependency: transitive
     description:
       name: graphs
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   http:
     dependency: "direct main"
     description:
@@ -249,6 +371,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   io:
     dependency: transitive
     description:
@@ -283,7 +412,7 @@ packages:
       name: logging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1"
+    version: "1.0.2"
   matcher:
     dependency: transitive
     description:
@@ -305,13 +434,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  mobx:
+    dependency: transitive
+    description:
+      name: mobx
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.4"
+  mobx_codegen:
+    dependency: "direct dev"
+    description:
+      name: mobx_codegen
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   package_config:
     dependency: transitive
     description:
       name: package_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.2"
   path:
     dependency: transitive
     description:
@@ -319,6 +462,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+  path_drawing:
+    dependency: transitive
+    description:
+      name: path_drawing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.1"
+  path_parsing:
+    dependency: transitive
+    description:
+      name: path_parsing
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   pedantic:
     dependency: transitive
     description:
@@ -326,6 +483,34 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
+  permission_handler:
+    dependency: "direct main"
+    description:
+      name: permission_handler
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "8.1.6"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      name: permission_handler_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.6.1"
+  petitparser:
+    dependency: transitive
+    description:
+      name: petitparser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
+  plugin_platform_interface:
+    dependency: transitive
+    description:
+      name: plugin_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   pool:
     dependency: transitive
     description:
@@ -339,7 +524,7 @@ packages:
       name: pub_semver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.1.0"
   pubspec_parse:
     dependency: transitive
     description:
@@ -347,6 +532,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  quiver:
+    dependency: transitive
+    description:
+      name: quiver
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
+  retrofit:
+    dependency: "direct main"
+    description:
+      name: retrofit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
+  retrofit_generator:
+    dependency: "direct dev"
+    description:
+      name: retrofit_generator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   shelf:
     dependency: transitive
     description:
@@ -429,6 +635,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   typed_data:
     dependency: transitive
     description:
@@ -436,6 +649,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.3.0"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.5"
   vector_math:
     dependency: transitive
     description:
@@ -443,6 +663,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  video_player:
+    dependency: "direct main"
+    description:
+      name: video_player
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.3"
+  video_player_platform_interface:
+    dependency: transitive
+    description:
+      name: video_player_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.0"
+  video_player_web:
+    dependency: transitive
+    description:
+      name: video_player_web
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.4"
   watcher:
     dependency: transitive
     description:
@@ -457,6 +698,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  xml:
+    dependency: transitive
+    description:
+      name: xml
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.2"
   yaml:
     dependency: transitive
     description:
@@ -466,4 +714,4 @@ packages:
     version: "3.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.26.0-17.6.pre"
+  flutter: ">=2.0.0"

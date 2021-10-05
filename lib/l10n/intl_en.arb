@@ -1,0 +1,7 @@
+{
+  "emailLabel": "E-Mail",
+  "passwordLabel": "Password",
+  "loginButtonLabel": "Login",
+  "takePictureButtonLabel": "Take Picture",
+  "captureLocationButtonLabel": "Capture Location"
+}

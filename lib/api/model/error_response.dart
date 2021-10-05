@@ -7,6 +7,13 @@ class ErrorResponse {
   @JsonKey(name: 'error')
   ErrorList? errorList;
 
+  @JsonKey(name: 'code')
+  int? code;
+  @JsonKey(name: 'message')
+  String? message;
+  @JsonKey(name: 'status')
+  String? status;
+
   ErrorResponse({this.errorList});
 
   factory ErrorResponse.fromJson(Map<String, dynamic> json) => _$ErrorResponseFromJson(json);

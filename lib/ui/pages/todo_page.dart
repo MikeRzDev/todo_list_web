@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo_list_web/api/firebase_api.dart';
 import 'package:todo_list_web/api/model/document_list.dart';
 import 'package:todo_list_web/api/model/todo.dart';
 import 'package:todo_list_web/api/model/todo_request.dart';
+import 'package:todo_list_web/sl/service_locator.dart';
 import 'package:todo_list_web/storage/storage.dart';
 import 'package:todo_list_web/ui/dialogs/dialog_widget.dart';
 import 'package:todo_list_web/ui/pages/login_page.dart';
+import 'package:todo_list_web/ui/store/todo_page_store.dart';
 import 'package:todo_list_web/ui/widgets/future_widget.dart';
 import 'package:todo_list_web/ui/widgets/search_widget.dart';
 
@@ -19,13 +22,14 @@ class TodoPage extends StatefulWidget {
 class _TodoPageState extends State<TodoPage> {
   final _textController = TextEditingController();
   final _storage = Storage();
+  final _store = locator<TodoPageStore>();
   final _firebaseApi = FirebaseApi();
   late Future<DocumentList> _documentList;
 
   @override
   void initState() {
     super.initState();
-    _documentList = _firebaseApi.getTodos();
+    _documentList = _store.getTodos();
   }
 
   @override
