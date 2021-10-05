@@ -7,7 +7,6 @@ import 'package:todo_list_web/ui/pages/camera_page.dart';
 import 'package:todo_list_web/ui/pages/todo_page.dart';
 import 'package:todo_list_web/ui/store/login_store.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todo_list_web/generated/l10n.dart';
 import 'package:todo_list_web/utils/extensions.dart';
 
 import 'gps_page.dart';

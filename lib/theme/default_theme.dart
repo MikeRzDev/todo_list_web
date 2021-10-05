@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 final defaultTheme = ThemeData(
   primaryColor: Colors.blue,
   fontFamily: 'Mulish',

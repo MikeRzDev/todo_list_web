@@ -30,6 +30,7 @@ dependencies:
   flutter_svg: ^0.22.0
   geolocator: ^7.6.2
   intl: ^0.17.0
+  google_maps_flutter: ^2.0.9
 
 dev_dependencies:
   json_serializable: ^4.1.4

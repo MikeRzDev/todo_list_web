@@ -31,6 +31,12 @@ if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 }
 
+def apiKeysProperties = new Properties()
+def apiKeysPropertiesFile = rootProject.file('api_key.properties')
+if (apiKeysPropertiesFile.exists()) {
+    apiKeysProperties.load(new FileInputStream(apiKeysPropertiesFile))
+}
+
 android {
     compileSdkVersion 30
 
@@ -39,12 +45,12 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "co.frmobile.todo_list_web"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders = [GOOGLE_MAP_API_KEY: "${apiKeysProperties.getProperty('GOOGLE_MAP_API_KEY')}"]
     }
 
     signingConfigs {
