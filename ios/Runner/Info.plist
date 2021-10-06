@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app requires the location permission</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app requires the location permission</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app required the microphone permission to record voice</string>
 	<key>NSCameraUsageDescription</key>
