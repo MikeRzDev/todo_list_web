@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:todo_list_web/api/model/auth_request.dart';
 import 'package:todo_list_web/api/model/auth_token.dart';
+import 'package:todo_list_web/config/app_config.dart';
 
 import '../config/api_consts.dart';
 
@@ -14,6 +15,6 @@ abstract class LoginApi {
   @POST('v1/accounts:signInWithPassword')
   Future<AuthToken> loginUser({
     @Body() required AuthRequest authRequest,
-    @Query('key') required String firebaseApiKey,
+    @Query('key') String firebaseApiKey = FIREBASE_API_KEY,
   });
 }

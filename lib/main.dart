@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flipperkit/flutter_flipperkit.dart';
 import 'package:todo_list_web/sl/service_locator.dart';
 import 'package:todo_list_web/storage/storage.dart';
 import 'package:todo_list_web/theme/default_theme.dart';
@@ -12,16 +11,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final sessionExists = await _sessionExists();
   startServiceLocator();
-  initFlipper();
   runApp(MyApp(sessionExists: sessionExists));
 }
 
-void initFlipper() {
-  FlipperClient flipperClient = FlipperClient.getDefault();
-  flipperClient.addPlugin(FlipperNetworkPlugin());
-  flipperClient.addPlugin(FlipperSharedPreferencesPlugin());
-  flipperClient.start();
-}
 
 Future<bool> _sessionExists() async {
   final storage = Storage();

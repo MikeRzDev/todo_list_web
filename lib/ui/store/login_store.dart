@@ -11,11 +11,9 @@ part 'login_store.g.dart';
 class LoginStore = _LoginStore with _$LoginStore;
 
 abstract class _LoginStore with Store {
-  final _firebaseRetrofit =
-      LoginApi(locator<Dio>());
+  final _firebaseRetrofit = LoginApi(locator<Dio>());
   final _storage = Storage();
 
-  final key = FIREBASE_API_KEY;
   final _emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
   @observable
@@ -43,18 +41,15 @@ abstract class _LoginStore with Store {
   }
 
   @computed
-  bool get isFormValid =>
-      isFieldValid(email, emailError) && isFieldValid(password, passwordError);
+  bool get isFormValid => isFieldValid(email, emailError) && isFieldValid(password, passwordError);
 
-  bool isFieldValid(String? field, String? errorField) =>
-      field != null && field.isNotEmpty && errorField == null;
+  bool isFieldValid(String? field, String? errorField) => field != null && field.isNotEmpty && errorField == null;
 
   Future<void> login() async {
     try {
       final authRequest = AuthRequest(email: email, password: password);
 
-      final token = await _firebaseRetrofit.loginUser(
-          authRequest: authRequest, firebaseApiKey: key);
+      final token = await _firebaseRetrofit.loginUser(authRequest: authRequest);
       await _storage.saveToken(token);
     } catch (ex) {
       print(ex);

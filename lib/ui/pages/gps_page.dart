@@ -45,38 +45,38 @@ class _GPSPageState extends State<GPSPage> {
     );
   }
 
-  Widget _buildPage() => Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Text(
-              'The position is:\nlat: ${gpsPosition.latitude}\nlong: ${gpsPosition.longitude}\nalt: lat: ${gpsPosition.altitude}',
-            ),
-          ),
-          Container(
-            width: 300,
-            height: 300,
-            child: GoogleMap(
-              mapType: MapType.hybrid,
-              initialCameraPosition: _kGooglePlex,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
-            ),
-          ),
-          SizedBox(height: 15),
-          ElevatedButton(
-              onPressed: _goToGpsLocation,
+  Widget _buildPage() => Center(
+    child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'Move to GPS Location in Map',
-                style: context.textTheme.bodyText1,
-              ))
-        ],
-      );
+                'The position is:\nlat: ${gpsPosition.latitude}\nlong: ${gpsPosition.longitude}\nalt: lat: ${gpsPosition.altitude}',
+              ),
+            ),
+            SizedBox(height: 15),
+            Container(
+              width: 300,
+              height: 300,
+              child: GoogleMap(
+                mapType: MapType.hybrid,
+                initialCameraPosition: _kGooglePlex,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+              ),
+            ),
+            SizedBox(height: 15),
+            ElevatedButton(
+                onPressed: _goToGpsLocation,
+                child: Text(
+                  'Move to GPS Location in Map',
+                  style: context.textTheme.bodyText1,
+                ))
+          ],
+        ),
+  );
 
   Widget _showErrorWidget(String error) => Text(error);
 
