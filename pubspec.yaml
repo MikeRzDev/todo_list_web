@@ -22,13 +22,13 @@ dependencies:
   flutter_mobx: ^2.0.2
   get_it: ^7.2.0
   permission_handler: ^8.1.6
-  camera: ^0.9.2+2
+  camera: ^0.9.4+8
   video_player: ^2.2.3
   dio: ^4.0.0
   retrofit: ^2.0.1
-  #flutter_flipperkit: ^0.0.27
+  flutter_flipperkit: ^0.0.28
   flutter_svg: ^0.22.0
-  geolocator: ^7.6.2
+  geolocator: ^8.0.5
   intl: ^0.17.0
   google_maps_flutter: ^2.0.9
 

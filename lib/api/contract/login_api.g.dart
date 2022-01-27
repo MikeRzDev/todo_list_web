@@ -17,7 +17,7 @@ class _LoginApi implements LoginApi {
 
   @override
   Future<AuthToken> loginUser(
-      {required authRequest, required firebaseApiKey}) async {
+      {required authRequest, firebaseApiKey = FIREBASE_API_KEY}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{r'key': firebaseApiKey};
     final _data = <String, dynamic>{};

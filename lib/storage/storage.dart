@@ -8,9 +8,6 @@ const _AUTH_TOKEN = 'AUTH_TOKEN';
 class Storage {
   final _storage = FlutterSecureStorage();
 
-  /*Future<String?> getTokenOld() =>
-      _storage.read(key: _AUTH_TOKEN).then((json) => json != null ? AuthToken.fromJson(jsonDecode(json)).idToken : null);*/
-
   Future<String?> getToken() async {
     final jsonString = await _storage.read(key: _AUTH_TOKEN);
     return jsonString != null ? AuthToken.fromJson(jsonDecode(jsonString)).idToken : null;

@@ -38,7 +38,7 @@ if (apiKeysPropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -47,7 +47,7 @@ android {
     defaultConfig {
         applicationId "co.frmobile.todo_list_web"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         manifestPlaceholders = [GOOGLE_MAP_API_KEY: "${apiKeysProperties.getProperty('GOOGLE_MAP_API_KEY')}"]
